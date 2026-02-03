@@ -6,9 +6,32 @@ import matplotlib.pyplot as plt
 
 from rf_core import analyze_path
 
-st.set_page_config(page_title="RF File Inspector", layout="wide")
+st.set_page_config(page_title="Signal Intelligence", layout="wide")
+import base64
 
-st.title("RF File Inspector (IQ/WAV) – aplicație web locală")
+def set_background(image_file):
+    with open(image_file, "rb") as f:
+        encoded = base64.b64encode(f.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+set_background("alexiateo.jpeg")
+
+
+
+st.title("Aplicatie Signal Intelligence")
 st.caption("Analizează fișiere autorizate: tip semnal (heuristic) + bruiaj + tip bruiaj.")
 
 colL, colR = st.columns([1, 1])
